@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <remove name="breadcrumbs" />
+        </reference>
+        <reference name="head" after="">
+            <!--Adding JS Files Styles-->
+            <action method="addItem"><type>skin_js</type><name>js/fotorama.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery-ias.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/app.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/main.js</name><params/></action>
+
+            <!--Adding CSS Files Styles-->
+            <action method="addCss"><stylesheet>css/fonts.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/font-awesome.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/bootstrapcdn.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/fotorama.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/jquery.ias.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/element.css</stylesheet><params/></action>
+            <action method="addCss"><stylesheet>css/site.css</stylesheet><params/></action>
+        </reference>
+        <reference name="header">
+            <block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"/>
+            <block type="cms/block" name="cms_header_top_social">
+                <action method="setBlockId"><block_is>header-top-social</block_is></action>
+            </block>
+            <block type="cms/block" name="cms_header_top_nav">
+                <action method="setBlockId"><block_is>header-top-nav</block_is></action>
+            </block>
+        </reference>
+        <reference name="footer">
+            <remove name="footer_currency" />
+            <remove name="footer_links" />
+            <remove name="footer_links2" />
+            <remove name="cms_footer_links" />
+            <remove name="cms_footer_links_sm" />
+            <block type="cms/block" name="footer_menu">
+                <action method="setBlockId"><block_is>footer_menu</block_is></action>
+            </block>
+            <block type="cms/block" name="footer-widget-wrapper">
+                <action method="setBlockId"><block_is>footer-widget-wrapper</block_is></action>
+            </block>
+        </reference>
+        <reference name="footer.newsletter">
+            <block type="cms/block" name="footer-title-content" as="footer-title-content">
+                <action method="setBlockId"><block_is>footer-title-content</block_is></action>
+            </block>
+        </reference>
+    </default>
+    <catalog_category_view>
+        <reference name="root">
+            <block type="core/template" name="top-info-category" as="top-info-category" template="catalog/category/top-info-category.phtml" />
+        </reference>
+        <reference name="left">
+            <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml" after="_">
+                <block type="page/html_pager" name="product_list_toolbar_pager" />
+            </block>
+        </reference>
+    </catalog_category_view>
+    <catalog_product_view>
+
+        <reference name="content">
+            <block name="product.info">
+                <remove name="product.attributes" />
+                <remove name="product.info.availability" />
+                <block type="catalog/product_view_media" name="product.info.moreviews" as="moreviews" template="catalog/product/view/moreviews.phtml">
+                    <block type="core/text_list" name="product.info.moreviews.after" as="after" />
+                </block>
+                <block type="cms/block" name="product.size-chart" as="size-chart">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                    <action method="setTitle" translate="value"><value>universal-size-chart</value></action>
+                    <action method="setBlockId"><block_is>productpage-sizechart-info</block_is></action>
+                </block>
+                <block type="cms/block" name="product.care-instructions" as="care-instructions">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                    <action method="setTitle" translate="value"><value>care-instructions</value></action>
+                    <action method="setBlockId"><block_is>productpage-careinstructions-info</block_is></action>
+                </block>
+                <block type="cms/block" name="product.shipping" as="shipping">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                    <action method="setTitle" translate="value"><value>shipping</value></action>
+                    <action method="setBlockId"><block_is>productpage-shipping-info</block_is></action>
+                </block>
+                <block type="cms/block" name="product.returns" as="returns">
+                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                    <action method="setTitle" translate="value"><value>returns</value></action>
+                    <action method="setBlockId"><block_is>productpage-returns-info</block_is></action>
+                </block>
+                <block name="product.info.addtocart" >
+                    <block type="cataloginventory/stockqty_default" name="product.availability" as="product_type_availability" template="cataloginventory/stockqty/default.phtml"/>
+                </block>
+            </block>
+
+        </reference>
+    </catalog_product_view>
+
+
+
+</layout>

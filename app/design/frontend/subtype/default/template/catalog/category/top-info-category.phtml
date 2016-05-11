@@ -1,0 +1,8 @@
+<div class="info-category">
+    <?php $categoryImage = Mage::getModel('catalog/layer')->getCurrentCategory()->getImage(); //Get the file name of the Image stored for the category ?>
+    <?php if($categoryImage): ?><img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$categoryImage  ?>" alt="image-product"/><?php endif; ?>
+    <div class="info-category-text">
+        <h1><?php echo Mage::getSingleton('catalog/layer')->getCurrentCategory()->getName() ?></h1>
+        <p><?php echo Mage::registry('current_category')->getDescription()?></p>
+    </div>
+</div>
